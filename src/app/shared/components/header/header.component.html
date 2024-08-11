@@ -1,0 +1,29 @@
+<div class="container">
+  <header class="header">
+    <div class="header__extend"></div>
+    <h1 class="header__titulo">Puyu-Net</h1>
+    <div class="header__extend"></div>
+    <div class="header__conectado">Online</div>
+    <mat-icon class="header__logo">person_pin</mat-icon>
+    <button class="header__boton" mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </header>
+  <nav class="nav">
+    <ul class="nav__lista">
+      <li class="nav__lista__elemento" routerLink="/inicio" routerLinkActive="nav__lista__elemento--active" [routerLinkActiveOptions]="{ exact: true }">Inicio</li>
+      <li class="nav__lista__elemento" routerLink="/contactos" routerLinkActive="nav__lista__elemento--active" [routerLinkActiveOptions]="{ exact: true }">Contactos</li>
+      <li class="nav__lista__elemento" routerLink="/postear" routerLinkActive="nav__lista__elemento--active" [routerLinkActiveOptions]="{ exact: true }">Postear</li>
+    </ul>
+  </nav>
+</div>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>remove_red_eye</mat-icon>
+    <span>Ver Perfil</span>
+  </button>
+  <button mat-menu-item routerLink="/auth/login">
+    <mat-icon>close</mat-icon>
+    <span>Cerrar Sesión</span>
+  </button>
+</mat-menu>

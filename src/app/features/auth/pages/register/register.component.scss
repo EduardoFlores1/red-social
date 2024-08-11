@@ -1,0 +1,77 @@
+
+.container {
+  background-color: var(--negro-claro);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .card {
+    width: 55%;
+    height: 70vh;
+    display: flex;
+    .left {
+      background-color: var(--morado-oscuro);
+      padding: 20px 20px;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      &__titulo {
+        font-weight: 500;
+        color: white;
+        text-decoration: underline;
+      }
+      &__logo {
+        width: 128px;
+        height: 128px;
+        font-size: 128px;
+        color: var(--azul-medio);
+        margin: 15% 0px;
+      }
+      &__mensaje {
+        text-align: center;
+        font-weight: 500;
+        color: white;
+      }
+    }
+    .right {
+      background-color: white;
+      width: 50%;
+      padding: 20px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      &__titulo{
+        margin-bottom: 3%;
+      }
+      &__logo{
+        width: 64px;
+        height: 64px;
+        font-size: 64px;
+        color: var(--azul-oscuro);
+        margin-bottom: 7%;
+      }
+      &__form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      &__boton{
+        background-color: var(--azul-oscuro);
+        color: white;
+      }
+      &__cambiar{
+        margin-top: 5%;
+      }
+      &--morado {
+        color: var(--morado-oscuro);
+        text-decoration: underline;
+        &:hover{
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

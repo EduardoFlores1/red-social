@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="card">
+    <section class="left">
+      <h1 class="left__titulo">Puyu-Net</h1>
+      <mat-icon class="left__logo" fontIcon="cloud"></mat-icon>
+      <h2 class="left__mensaje">¡Bienvenido a la red social del momento!</h2>
+    </section>
+    <section class="right">
+      <h2 class="right__titulo">REGÍSTRATE </h2>
+      <mat-icon class="right__logo" fontIcon="person_add"></mat-icon>
+      <form class="right__form">
+        <mat-form-field class="right__form__field" appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="Ingrese su username">
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Afición</mat-label>
+          <input matInput placeholder="Ingrese su afición">
+          <mat-icon matSuffix>mood</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="Ingrese su contraseña">
+          <mat-icon matSuffix>locked</mat-icon>
+        </mat-form-field>
+      </form>
+      <button class="right__boton" mat-raised-button>Registrarse</button>
+      <h4 class="right__cambiar">¿Tienes cuenta?, <span class="right--morado" routerLink="/auth/login">Inicia Sesión</span></h4>
+    </section>
+  </div>
+</div>
