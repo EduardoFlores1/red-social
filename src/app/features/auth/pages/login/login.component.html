@@ -8,19 +8,27 @@
     <section class="right">
       <h2 class="right__titulo">INICIAR SECIÓN</h2>
       <mat-icon class="right__logo" fontIcon="person_pin"></mat-icon>
-      <form class="right__form">
-        <mat-form-field appearance="outline">
-          <mat-label>Username</mat-label>
-          <input matInput placeholder="Ingrese su username">
-          <mat-icon matSuffix>person</mat-icon>
+      <form [formGroup]="loginForm" class="right__form" (submit)="tryLogin()">
+        <mat-form-field appearance="outline" class="right__form__field">
+          <mat-label>Email</mat-label>
+          <input (blur)="updateErrorMessageEmail()" formControlName="email" matInput placeholder="Ingrese su email">
+          <mat-icon matSuffix>alternate_email</mat-icon>
+          @if (f['email'].invalid) {
+            <mat-error>{{sigErrorEmail()}}</mat-error>
+          }
         </mat-form-field>
-        <mat-form-field appearance="outline">
+
+        <mat-form-field appearance="outline" class="right__form__field">
           <mat-label>Password</mat-label>
-          <input matInput placeholder="Ingrese su contraseña">
+          <input (blur)="updateErrorMessagePassword()" formControlName="password" matInput placeholder="Ingrese su contraseña">
           <mat-icon matSuffix>locked</mat-icon>
+          @if (f['password'].invalid) {
+            <mat-error>{{sigErrorPassword()}}</mat-error>
+          }
         </mat-form-field>
+
+        <button type="submit" class="right__form__boton" mat-raised-button>Acceder</button>
       </form>
-      <button class="right__boton" routerLink="/inicio" mat-raised-button>Acceder</button>
       <h4 class="right__cambiar">¿Eres nuevo?, <span class="right--morado" routerLink="/auth/register">Regístrate</span></h4>
     </section>
   </div>

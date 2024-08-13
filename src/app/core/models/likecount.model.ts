@@ -1,5 +1,5 @@
 export interface LikeCount {
-  id: string,
+  id?: string,
   publication_id: string,
   count: number
 }

@@ -8,24 +8,35 @@
     <section class="right">
       <h2 class="right__titulo">REGÍSTRATE </h2>
       <mat-icon class="right__logo" fontIcon="person_add"></mat-icon>
-      <form class="right__form">
-        <mat-form-field class="right__form__field" appearance="outline">
+      <form [formGroup]="registerForm" class="right__form" (ngSubmit)="tryRegister()">
+        <mat-form-field class="right__form__field" appearance="outline" class="right__form__field">
           <mat-label>Username</mat-label>
-          <input matInput placeholder="Ingrese su username">
+          <input (blur)="updateErrorMessageUsername()" formControlName="displayName" matInput placeholder="Ingrese su username">
           <mat-icon matSuffix>person</mat-icon>
+          @if (f['displayName'].invalid) {
+            <mat-error>{{sigErrorUsername()}}</mat-error>
+          }
         </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Afición</mat-label>
-          <input matInput placeholder="Ingrese su afición">
-          <mat-icon matSuffix>mood</mat-icon>
+
+        <mat-form-field appearance="outline" class="right__form__field">
+          <mat-label>Email</mat-label>
+          <input (blur)="updateErrorMessageEmail()" formControlName="email" matInput placeholder="Ingrese su email">
+          <mat-icon matSuffix>alternate_email</mat-icon>
+          @if (f['email'].invalid) {
+            <mat-error>{{sigErrorEmail()}}</mat-error>
+          }
         </mat-form-field>
-        <mat-form-field appearance="outline">
+
+        <mat-form-field appearance="outline" class="right__form__field">
           <mat-label>Password</mat-label>
-          <input matInput placeholder="Ingrese su contraseña">
+          <input (blur)="updateErrorMessagePassword()" formControlName="password" matInput placeholder="Ingrese su contraseña">
           <mat-icon matSuffix>locked</mat-icon>
+          @if (f['password'].invalid) {
+            <mat-error>{{sigErrorPassword()}}</mat-error>
+          }
         </mat-form-field>
+        <button type="submit" class="right__form__boton" mat-raised-button>Registrarse</button>
       </form>
-      <button class="right__boton" mat-raised-button>Registrarse</button>
       <h4 class="right__cambiar">¿Tienes cuenta?, <span class="right--morado" routerLink="/auth/login">Inicia Sesión</span></h4>
     </section>
   </div>

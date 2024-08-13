@@ -1,5 +1,5 @@
 export interface Publications {
-  id: string,
+  id?: string,
   user_id: string,
   detail: string,
   created_at: string

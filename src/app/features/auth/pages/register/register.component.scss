@@ -7,7 +7,7 @@
   justify-content: center;
   .card {
     width: 55%;
-    height: 70vh;
+    height: 75vh;
     display: flex;
     .left {
       background-color: var(--morado-oscuro);
@@ -57,10 +57,13 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-      }
-      &__boton{
-        background-color: var(--azul-oscuro);
-        color: white;
+        &__field {
+          margin-bottom: 3%;
+        }
+        &__boton{
+          background-color: var(--azul-oscuro);
+          color: white;
+        }
       }
       &__cambiar{
         margin-top: 5%;
