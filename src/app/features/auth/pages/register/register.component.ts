@@ -12,6 +12,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../../../core/services/auth.service';
+import { ProgressRequestService } from '../../../../core/services/progress-request.service';
+import { SnackbarRequestService } from '../../../../core/services/snackbar-request.service';
 
 @Component({
   selector: 'app-register',
@@ -29,9 +31,10 @@ import { AuthService } from '../../../../core/services/auth.service';
 })
 export class RegisterComponent {
   private _authService = inject(AuthService);
+  private _progressRequestService = inject(ProgressRequestService);
+  private _snackBarService = inject(SnackbarRequestService);
 
   registerForm!: FormGroup;
-  sigErrorMessage = signal<String>('');
   sigErrorUsername = signal<String>('');
   sigErrorEmail = signal<String>('');
   sigErrorPassword = signal<String>('');
@@ -40,9 +43,9 @@ export class RegisterComponent {
     this.createForm();
   }
 
-  createForm() {
+  private createForm() {
     this.registerForm = this._fb.group({
-      displayName: [
+      username: [
         '',
         [
           Validators.required,
@@ -67,21 +70,21 @@ export class RegisterComponent {
   }
 
   updateErrorMessageUsername() {
-    if(this.f['displayName'].hasError('required')) {
+    if (this.f['username'].hasError('required')) {
       this.sigErrorUsername.set('El username es requerido');
-    } else if(this.f['displayName'].hasError('minlength')) {
+    } else if (this.f['username'].hasError('minlength')) {
       this.sigErrorUsername.set('Mín 5 caracteres');
-    }else if(this.f['displayName'].hasError('maxlength')) {
+    } else if (this.f['username'].hasError('maxlength')) {
       this.sigErrorUsername.set('Max 25 caracteres');
-    }else {
+    } else {
       this.sigErrorUsername.set('');
     }
   }
 
   updateErrorMessageEmail() {
-    if(this.f['email'].hasError('required')) {
+    if (this.f['email'].hasError('required')) {
       this.sigErrorEmail.set('El email es requerido');
-    } else if(this.f['email'].hasError('email')) {
+    } else if (this.f['email'].hasError('email')) {
       this.sigErrorEmail.set('Email no válido');
     } else {
       this.sigErrorEmail.set('');
@@ -89,27 +92,32 @@ export class RegisterComponent {
   }
 
   updateErrorMessagePassword() {
-    if(this.f['password'].hasError('required')) {
+    if (this.f['password'].hasError('required')) {
       this.sigErrorPassword.set('El password es requerido');
-    } else if(this.f['password'].hasError('minlength')) {
+    } else if (this.f['password'].hasError('minlength')) {
       this.sigErrorPassword.set('Mín 8 caracteres');
-    }else if(this.f['password'].hasError('maxlength')) {
+    } else if (this.f['password'].hasError('maxlength')) {
       this.sigErrorPassword.set('Max 16 caracteres');
-    }else {
+    } else {
       this.sigErrorPassword.set('');
     }
   }
 
   tryRegister() {
-    this._authService
-      .doRegister(this.registerForm.value)
-      .then(() => {
-        this._router.navigateByUrl('/auth/login');
-        console.log('Usuario registrado con éxito!');
-      })
-      .catch((err: Error) => {
-        this.sigErrorMessage.set(err.message);
-        console.log(err.message);
-      });
+    if (this.registerForm.valid) {
+      this._progressRequestService.open();
+      this._authService
+        .doRegister(this.registerForm.value)
+        .then(() => {
+          this._router.navigateByUrl('/inicio');
+          console.log('Usuario registrado con éxito!');
+        })
+        .catch((err: Error) => {
+          this._snackBarService.open(err.message, 'Error')
+          console.log(err.message);
+        })
+        .finally(() => this._progressRequestService.close());
+    }
   }
 }
+ 

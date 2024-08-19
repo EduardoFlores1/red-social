@@ -1,14 +1,5 @@
 <div class="container">
-  <div class="left">
-    <div class="left__perfil">
-      <mat-icon class="perfil__logo"></mat-icon>
-      <h3 class="perfil__titulo">¡Bienvenido, Eduardo FL!</h3>
-      <h4 class="perfil__contactos">Contactos: 21</h4>
-      <h4 class="perfil__publicaciones">Publicaciones: 210</h4>
-      <button class="perfil__botonPerfil" mat-raised-button>Ver Perfil</button>
-    </div>
-  </div>
-  <div class="right">
-    <app-card-publicacion />
-  </div>
+    @for (item of sigPubList(); track $index) {
+        <app-card-publicacion [publicacion]="item" />
+    }
 </div>

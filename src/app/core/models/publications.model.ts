@@ -1,6 +1,7 @@
-export interface Publications {
+export interface Publication {
   id?: string,
   user_id: string,
-  detail: string,
+  title: string,
+  url: string,
   created_at: string
 }

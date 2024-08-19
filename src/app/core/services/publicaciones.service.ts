@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/compat/firestore";
-import { Publications } from '../models/publications.model';
+import { Publication } from '../models/publications.model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,21 +8,28 @@ import { Publications } from '../models/publications.model';
 export class PublicacionesService {
 
   private dbPath = '/publications';
-  _publicationsRef: AngularFirestoreCollection<Publications>;
+  private _publicationsRef: AngularFirestoreCollection<Publication>;
 
   constructor(private db: AngularFirestore) {
     this._publicationsRef = db.collection(this.dbPath);
   }
 
-  getAll(): AngularFirestoreCollection<Publications> {
-    return this._publicationsRef;
+  async getAll(): Promise<Publication[]> {
+    try {
+      const snapShosts = await this._publicationsRef.ref
+      .orderBy('created_at', 'desc').limit(10).get();
+      const list = snapShosts.docs.map(snapshot => ({id: snapshot.id, ...snapshot.data()}) as Publication);
+      return list;
+    } catch (error) {
+      throw error;
+    }
   }
 
-  create(pub: Publications): any {
+  create(pub: Publication): Promise<any> {
     return this._publicationsRef.add({...pub});
   }
 
-  update(id: string, pub: Publications): Promise<void> {
+  update(id: string, pub: Publication): Promise<void> {
     return this._publicationsRef.doc(id).update(pub);
   }
 

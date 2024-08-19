@@ -11,27 +11,28 @@
     padding: 0px 15px;
     box-shadow: 0px 5px 3px var(--negro-claro);
     box-sizing: border-box;
-    &__extend {
-      flex: 1 1;
-    }
     &__titulo {
       font-weight: 500;
       color: var(--morado-oscuro);
     }
-    &__conectado {
-      margin: 0px 15px;
-      padding: 2px 10px;
-      font-size: var(--h4-size);
-      color: var(--negro-oscuro);
-      background-color: var(--verde-claro);
-      border-radius: 5px;
-    }
-    &__logo {
-      height: 28px;
-      width: 28px;
-      font-size: 28px;
-    }
-    &__boton {
+    &__right {
+      display: flex;
+      align-items: center;
+      right: 15px;
+      position: absolute;
+      &__conectado {
+        margin: 0px 15px;
+        padding: 2px 10px;
+        font-size: var(--h4-size);
+        color: var(--negro-oscuro);
+        background-color: var(--verde-claro);
+        border-radius: 5px;
+      }
+      &__logo {
+        height: 28px;
+        width: 28px;
+        font-size: 28px;
+      }
     }
   }
   .nav {

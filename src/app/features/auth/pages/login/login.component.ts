@@ -12,6 +12,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../../../core/services/auth.service';
+import { ProgressRequestService } from '../../../../core/services/progress-request.service';
+import { SnackbarRequestService } from '../../../../core/services/snackbar-request.service';
 
 @Component({
   selector: 'app-login',
@@ -29,9 +31,10 @@ import { AuthService } from '../../../../core/services/auth.service';
 })
 export class LoginComponent {
   private _authService = inject(AuthService);
+  private _progressRequest = inject(ProgressRequestService);
+  private _snackBarService = inject(SnackbarRequestService);
 
   loginForm!: FormGroup;
-  sigErrorMessage = signal<String>('');
   sigErrorEmail = signal<String>('');
   sigErrorPassword = signal<String>('');
 
@@ -39,7 +42,7 @@ export class LoginComponent {
     this.createForm();
   }
 
-  createForm() {
+  private createForm() {
     this.loginForm = this._fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: [
@@ -58,9 +61,9 @@ export class LoginComponent {
   }
 
   updateErrorMessageEmail() {
-    if(this.f['email'].hasError('required')) {
+    if (this.f['email'].hasError('required')) {
       this.sigErrorEmail.set('El email es requerido');
-    } else if(this.f['email'].hasError('email')) {
+    } else if (this.f['email'].hasError('email')) {
       this.sigErrorEmail.set('Email no válido');
     } else {
       this.sigErrorEmail.set('');
@@ -68,27 +71,31 @@ export class LoginComponent {
   }
 
   updateErrorMessagePassword() {
-    if(this.f['password'].hasError('required')) {
+    if (this.f['password'].hasError('required')) {
       this.sigErrorPassword.set('El password es requerido');
-    } else if(this.f['password'].hasError('minlength')) {
+    } else if (this.f['password'].hasError('minlength')) {
       this.sigErrorPassword.set('Mín 8 caracteres');
-    }else if(this.f['password'].hasError('maxlength')) {
+    } else if (this.f['password'].hasError('maxlength')) {
       this.sigErrorPassword.set('Max 16 caracteres');
-    }else {
+    } else {
       this.sigErrorPassword.set('');
     }
   }
 
   tryLogin() {
-    this._authService
-    .doLogin(this.loginForm.value)
-    .then(() => {
-      this._router.navigateByUrl('/inicio');
-      console.log('Usuario logueado exitosamente!');
-    })
-    .catch((err: Error) => {
-      this.sigErrorMessage.set(err.message);
-      console.log(err.message);
-    });
+    if (this.loginForm.valid) {
+      this._progressRequest.open();
+      this._authService
+        .doLogin(this.loginForm.value)
+        .then(() => {
+          this._router.navigateByUrl('/inicio');
+          console.log('Usuario logueado exitosamente!');
+        })
+        .catch((err: Error) => {
+          this._snackBarService.open(err.message, 'Error')
+          console.log(err.message);
+        })
+        .finally(() => this._progressRequest.close());
+    }
   }
 }

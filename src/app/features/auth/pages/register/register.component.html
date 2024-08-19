@@ -9,11 +9,11 @@
       <h2 class="right__titulo">REGÍSTRATE </h2>
       <mat-icon class="right__logo" fontIcon="person_add"></mat-icon>
       <form [formGroup]="registerForm" class="right__form" (ngSubmit)="tryRegister()">
-        <mat-form-field class="right__form__field" appearance="outline" class="right__form__field">
+        <mat-form-field appearance="outline" class="right__form__field">
           <mat-label>Username</mat-label>
-          <input (blur)="updateErrorMessageUsername()" formControlName="displayName" matInput placeholder="Ingrese su username">
+          <input (blur)="updateErrorMessageUsername()" formControlName="username" matInput placeholder="Ingrese su usuario">
           <mat-icon matSuffix>person</mat-icon>
-          @if (f['displayName'].invalid) {
+          @if (f['username'].invalid) {
             <mat-error>{{sigErrorUsername()}}</mat-error>
           }
         </mat-form-field>
