@@ -35,6 +35,7 @@ export class RegisterComponent {
   private _snackBarService = inject(SnackbarRequestService);
 
   registerForm!: FormGroup;
+  hidePassword: boolean = true;
   sigErrorUsername = signal<String>('');
   sigErrorEmail = signal<String>('');
   sigErrorPassword = signal<String>('');

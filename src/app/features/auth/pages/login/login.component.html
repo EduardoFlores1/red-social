@@ -3,7 +3,7 @@
     <section class="left">
       <h1 class="left__titulo">Puyu-Net</h1>
       <mat-icon class="left__logo" fontIcon="cloud"></mat-icon>
-      <h2 class="left__mensaje">¡Bienvenido a la red social del momento!</h2>
+      <h2 class="left__mensaje">¡Bienvenido a nuestra red social, comparta sus bebitas!</h2>
     </section>
     <section class="right">
       <h2 class="right__titulo">INICIAR SECIÓN</h2>
@@ -20,8 +20,10 @@
 
         <mat-form-field appearance="outline" class="right__form__field">
           <mat-label>Password</mat-label>
-          <input (blur)="updateErrorMessagePassword()" formControlName="password" matInput placeholder="Ingrese su contraseña">
-          <mat-icon matSuffix>locked</mat-icon>
+          <input [type]="hidePassword ? 'password' : 'text'" (blur)="updateErrorMessagePassword()" formControlName="password" matInput placeholder="Ingrese su contraseña">
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
           @if (f['password'].invalid) {
             <mat-error>{{sigErrorPassword()}}</mat-error>
           }

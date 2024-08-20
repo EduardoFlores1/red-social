@@ -1,0 +1,22 @@
+<div class="post">
+  <h2 class="post__titulo">Nueva Publicación</h2>
+  <mat-form-field appearance="outline">
+    <mat-label>Titulo</mat-label>
+    <input matInput [formControl]="inputTitle" placeholder="Agrege un titulo">
+    <mat-icon matSuffix>question_answer</mat-icon>
+    <mat-hint>Max. 30 caracteres</mat-hint>
+  </mat-form-field>
+  <mat-icon (click)="fileInput.click()" class="post__image">backup</mat-icon>
+  <h4 class="post__file-title">Video: {{fileName()}}</h4>
+  <div class="post__botones">
+    <button [disabled]="inputTitle.invalid || !this.file()" mat-raised-button color="primary"
+      (click)="uploadFile()">Guardar</button>
+    <button mat-raised-button color="warn" mat-dialog-close>Cerrar</button>
+  </div>
+  @if (progressSpinnerStatus()) {
+    @defer () {
+      <app-progress-spinner />
+    }
+  }
+</div>
+<input #fileInput style="display: none;" (change)="onFileSelected($event)" type="file" />

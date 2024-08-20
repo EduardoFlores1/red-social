@@ -1,33 +1,28 @@
 .container {
   display: flex;
   flex-direction: column;
-  height: 18%;
-  background-color: var(--morado-claro);
+  height: 18vh;
+  background-color: var(--surface);
+  position: fixed;
+  width: 100%;
+  z-index: 1;
   .header {
     height: 55%;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0px 15px;
-    box-shadow: 0px 5px 3px var(--negro-claro);
+    box-shadow: 0px 2px 3px var(--on-surface);
     box-sizing: border-box;
     &__titulo {
       font-weight: 500;
-      color: var(--morado-oscuro);
+      color: var(--on-surface);
     }
     &__right {
       display: flex;
       align-items: center;
       right: 15px;
       position: absolute;
-      &__conectado {
-        margin: 0px 15px;
-        padding: 2px 10px;
-        font-size: var(--h4-size);
-        color: var(--negro-oscuro);
-        background-color: var(--verde-claro);
-        border-radius: 5px;
-      }
       &__logo {
         height: 28px;
         width: 28px;
@@ -40,24 +35,43 @@
       display: flex;
       align-items: center;
       list-style-type: none;
+      gap: 10px;
       
       &__elemento {
         &--active {
-          background-color: var(--morado-oscuro);
-          color: white;
+          background-color: var(--on-primary-container);
+          color: var(--on-primary);
         }
         font-size: var(--h3-size);
         font-weight: 550;
         text-align: center;
-        margin-right: 10px;
         padding: 2px 5px;
         width: 100px;
-        background-color: white;
-        color: var(--negro-oscuro);
+        background-color: var(--secondary-container);
+        color: var(--on-secondary-container);
         border-radius: 5px;
         &:hover {
           cursor: pointer;
-          background-color: var(--morado-medio);
+          background-color: var(--tertiary);
+          color: var(--on-tertiary);
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    .header {
+      justify-content: flex-start;
+    }
+    .nav {
+      justify-content: center;
+      &__lista {
+        justify-content: center;
+        padding: 0;
+        &__elemento {
+          width: 85px;
         }
       }
     }

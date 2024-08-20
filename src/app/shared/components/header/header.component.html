@@ -2,7 +2,6 @@
   <header class="header">
     <h1 class="header__titulo">Puyu-Net</h1>
     <div class="header__right">
-      <div class="header__right__conectado">Online</div>
       <mat-icon class="header__right__logo">person_pin</mat-icon>
       <button class="header__right__boton" mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
@@ -13,7 +12,7 @@
     <ul class="nav__lista">
       <li class="nav__lista__elemento" routerLink="/inicio" routerLinkActive="nav__lista__elemento--active" [routerLinkActiveOptions]="{ exact: true }">Inicio</li>
       <li class="nav__lista__elemento" routerLink="/contactos" routerLinkActive="nav__lista__elemento--active" [routerLinkActiveOptions]="{ exact: true }">Contactos</li>
-      <li class="nav__lista__elemento" routerLink="/postear" routerLinkActive="nav__lista__elemento--active" [routerLinkActiveOptions]="{ exact: true }">Postear</li>
+      <li class="nav__lista__elemento" (click)="openDialog()">Postear</li>
     </ul>
   </nav>
 </div>

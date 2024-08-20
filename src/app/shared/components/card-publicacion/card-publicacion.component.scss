@@ -1,32 +1,54 @@
 .container {
-  background-color: var(--morado-medio);
-  height: 400px;
-  width: 300px;
+  background-color: var(--on-secondary-container);
+  height: 75vh;
+  width: 350px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   padding: 25px 20px;
+  box-sizing: border-box;
   border-radius: 10px;
+  gap: 5px;
   .cabecera {
     display: flex;
     flex-direction: row;
     gap: 10px;
-    height: 20%;
+    height: 7%;
     &__username {
-      color: white;
+      color: var(--on-secondary);
+      font-weight: 450;
     }
   }
   .cuerpo {
     display: flex;
     flex-direction: column;
-    height: 60%;
+    height: 83%;
     &__titulo {
-      color: white;
+      color: var(--on-secondary);
+      margin-bottom: 5px;
+      font-weight: 450;
+    }
+    &__url {
+      height: 93%;
     }
   }
   .pie {
     display: flex;
     align-items: end;
     justify-content: space-between;
-    height: 20%;
+    &__likescount {
+      color: var(--on-secondary);
+      font-weight: 450;
+      font-size: var(--h3-size);
+    }
+    &__like {
+      color: var(--on-secondary);
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    width: 90vw;
   }
 }

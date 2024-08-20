@@ -3,22 +3,24 @@
 @use "@angular/material" as mat;
 
 :root {
-  --morado-oscuro: #4e1adf;
-  --morado-medio: #7f51ff;
-  --morado-claro: #dfd6f5;
+  
+  --primary: #6750A4;
+  --on-primary: #FFFFFF;
+  --primary-container: #EADDFF;
+  --on-primary-container: #4F378B;
 
-  //--morado-medio: #d684fd;
-  //--morado-claro: #e8b8ff;
+  --secondary: #625B71;
+  --on-secondary: #FFFFFF;
+  --secondary-container: #E8DEF8;
+  --on-secondary-container: #4A4458;
 
-  --azul-oscuro: #2d76ff;
-  --azul-medio: #6bcffd;
+  --tertiary: #7D5260;
+  --on-tertiary: #FFFFFF;
+  --tertiary-container: #FFFFFF;
+  --on-tertiary-container: #633B48;
 
-  --verde-oscuro: #3ffd3b;
-  --verde-medio: #82fd7f;
-  --verde-claro: #a9fda7;
-
-  --negro-oscuro: #292929;
-  --negro-claro: #777877;
+  --surface: #FEF7FF; // fondo general
+  --on-surface: #1D1B20; // letra general
 
   --h1-size: 36px;
   --h2-size: 21px;
@@ -29,6 +31,8 @@
   h2 { font-size: 21px; margin: 0;}
   h3 { font-size: 18px; margin: 0;}
   h4 { font-size: 14px; margin: 0;}
+
+  p {margin: 0}
 
   @include mat.form-field-density(-3);
 

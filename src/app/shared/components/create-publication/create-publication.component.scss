@@ -1,0 +1,30 @@
+.post {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: var(--surface);
+  padding: 20px;
+  &__titulo {
+    margin-bottom: 15px;
+    color: var(--on-surface);
+  }
+  &__image {
+    width: 128px;
+    height: 128px;
+    font-size: 128px;
+    margin: 0px auto;
+    color: var(--on-primary-container);
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &__file-title {
+    margin-bottom: 10px;
+  }
+  &__botones {
+    display: flex;
+    gap: 30px;
+  }
+}

@@ -1,16 +1,20 @@
 <div class="container">
   @if (userPerfil()) {
-    <div class="cabecera">
-      <mat-icon class="cabecera__logo">person_pin</mat-icon>
-      <h3 class="cabecera__username">{{userPerfil()?.displayName}}</h3>
-    </div>
-    <div class="cuerpo">
-      <h4 class="cuerpo__titulo">{{publicacion.title}}</h4>
-      <div class="cuerpo__url">{{publicacion.url}}</div>
-    </div>
-    <div class="pie">
-      <span class="pie__likescount">Likes: {{likeCounts()}}</span>
-      <mat-icon class="pie__like">favorite_border</mat-icon>
-    </div>
+  <div class="cabecera">
+    <mat-icon class="cabecera__logo">person_pin</mat-icon>
+    <h3 class="cabecera__username">{{userPerfil()?.displayName}}</h3>
+  </div>
+  <div class="cuerpo">
+    <p class="cuerpo__titulo">{{publicacion.title}}</p>
+    <video class="cuerpo__url" controls>
+      <source [src]="publicacion.url" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <div class="pie">
+    <span class="pie__likescount">Likes: {{likeCounts()}}</span>
+    <mat-icon class="pie__like">favorite</mat-icon>
+  </div>
   }
 </div>
+

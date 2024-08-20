@@ -10,7 +10,7 @@ import { User } from '../../../core/models/user.model';
   selector: 'app-card-publicacion',
   standalone: true,
   imports: [
-    MatIconModule
+    MatIconModule,
   ],
   templateUrl: './card-publicacion.component.html',
   styleUrl: './card-publicacion.component.scss'
@@ -44,10 +44,17 @@ export class CardPublicacionComponent {
 
   private loadLikesCountPublication() {
     this.onDestroy$.add(
-      this._likecountService.getLikeCountsOnChange(this.publicacion.id!).subscribe({
-        next: (count) => this.likeCounts.set(count),
-        error: (error) => console.log(error)
-      })
+      this._likecountService.getLikeCountsOnChange(this.publicacion.id!)
+      .onSnapshot(
+        snapshot => {
+          if(!snapshot.empty) {
+            this.likeCounts.set(snapshot.docs[0].data().count);
+          }else {
+            console.log('like doc vacio de pub')
+          }
+        },
+        error => console.log(error)
+      )
     );
   }
 }

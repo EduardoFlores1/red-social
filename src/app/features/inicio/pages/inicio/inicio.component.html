@@ -1,5 +1,9 @@
 <div class="container">
-    @for (item of sigPubList(); track $index) {
-        <app-card-publicacion [publicacion]="item" />
+    @if (sigSpinnerStatus()) {
+        @for (item of sigPubList(); track $index) {
+            <app-card-publicacion [publicacion]="item" />
+        }
+    }@else {
+        <mat-spinner style="margin-top: 30vh;"></mat-spinner>
     }
 </div>

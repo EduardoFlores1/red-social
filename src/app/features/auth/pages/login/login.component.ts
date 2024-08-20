@@ -35,6 +35,7 @@ export class LoginComponent {
   private _snackBarService = inject(SnackbarRequestService);
 
   loginForm!: FormGroup;
+  hidePassword: boolean = true;
   sigErrorEmail = signal<String>('');
   sigErrorPassword = signal<String>('');
 

@@ -48,7 +48,7 @@ export class UserService {
       this._usersRef.ref.where('uid', '==', userUID).limit(1).get()
       .then((snapshot) => {
         if(!snapshot.empty) {
-          resolve(snapshot.docs[0].data() as User);
+          resolve(({id: snapshot.docs[0].id, ...snapshot.docs[0].data()}) as User);
         }else {
           reject("Usuario no encontrado!");
         }

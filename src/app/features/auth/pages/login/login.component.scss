@@ -1,16 +1,17 @@
 
 .container {
-  background-color: var(--negro-claro);
+  background-color: var(--secondary-container);
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   .card {
     width: 55%;
     height: 75vh;
     display: flex;
     .left {
-      background-color: var(--morado-oscuro);
+      background-color: var(--on-primary-container);
       padding: 20px 20px;
       width: 50%;
       display: flex;
@@ -19,24 +20,24 @@
       justify-content: center;
       &__titulo {
         font-weight: 500;
-        color: white;
+        color: var(--on-primary);
         text-decoration: underline;
       }
       &__logo {
         width: 128px;
         height: 128px;
         font-size: 128px;
-        color: var(--azul-medio);
+        color: var(--on-primary);
         margin: 15% 0px;
       }
       &__mensaje {
         text-align: center;
         font-weight: 500;
-        color: white;
+        color: var(--primary-container);
       }
     }
     .right {
-      background-color: white;
+      background-color: var(--surface);
       width: 50%;
       padding: 20px 20px;
       display: flex;
@@ -45,12 +46,13 @@
       justify-content: center;
       &__titulo{
         margin-bottom: 5%;
+        color: var(--on-surface);
       }
       &__logo{
         width: 64px;
         height: 64px;
         font-size: 64px;
-        color: var(--azul-oscuro);
+        color: var(--secondary);
         margin-bottom: 20%;
       }
       &__form{
@@ -61,15 +63,15 @@
           margin-bottom: 3%;
         }
         &__boton{
-          background-color: var(--azul-oscuro);
-          color: white;
+          background-color: var(--on-primary-container);
+          color: var(--on-primary);
         }
       }
       &__cambiar{
         margin-top: 10%;
       }
       &--morado {
-        color: var(--morado-oscuro);
+        color: var(--primary);
         text-decoration: underline;
         &:hover{
           cursor: pointer;
@@ -77,4 +79,27 @@
       }
     }
   }
+}
+
+input[type="password"]::-ms-reveal, 
+input[type="password"]::-ms-clear {
+    display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  
+.container {
+  height: 100%;
+  width: 100%;
+  .card {
+    width: 85%;
+    .left {
+      display: none;
+    }
+    .right {
+      border-radius: 10px;
+      width: 100%;
+    }
+  }
+}
 }
